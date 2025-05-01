@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harvest Fresh</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <h1>Harvest Fresh</h1>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="produk.html">Produk</a>
+      <a href="aboute.html">Tentang</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="produk">
+        <h3>Produk Kami</h3>
+        <div class="produk-grid">
+          <div class="produk-card">
+            <img src="/img/produk/produk1.jpg" alt="bombai" />
+            <h4>Bombai</h4>
+            <!--<p class="harga">Rp 15.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk2.jpg" alt="Tomat" />
+            <h4>Tomat</h4>
+            <!--<p class="harga">Rp 26.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk3.jpg" alt="lemon" />
+            <h4>Lemon</h4>
+           <!-- <p class="harga">Rp 12.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk4.jpg" alt="cabe" />
+            <h4>Cabe</h4>
+           <!-- <p class="harga">Rp 9.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk5.jpg" alt="telur" />
+            <h4>Telur</h4>
+           <!--<p class="harga">Rp 9.000 / kg</p>--> 
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk6.jpg" alt="bawng putih" />
+            <h4>Bawang Putih</h4>
+            <!-- <p class="harga">Rp 9.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="/img/produk/produk7.jpg" alt="timun" />
+            <h4>Timun</h4>
+           <!-- <p class="harga">Rp 9.000 / kg</p>-->
+          </div>
+          <div class="produk-card">
+            <img src="img/produk/produk8.jpg" alt="brokoli" />
+            <h4>Brokoli</h4>
+           <!-- <p class="harga">Rp 9.000 / kg</p>-->
+          </div>
+        </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2023 Harvest Fresh. All rights reserved.</p>
+    <p>Jl.Lemahneundet RT 05/03 Desa Sukagalih Kec.Megamendung Kab.Bogor</p>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    window.jsPDF = window.jspdf.jsPDF;
+
+    function unduhDaftarHarga() {
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("Daftar Harga Sayuran", 20, 20);
+
+      const harga = [
+        ["Bayam", "Rp 15.000 / kg"],
+        ["Tomat", "Rp 26.000 / kg"],
+        ["Wortel", "Rp 12.000 / kg"],
+        ["Kubis", "Rp 9.000 / kg"],
+      ];
+
+      harga.forEach((item, i) => {
+        doc.text(`${item[0]}: ${item[1]}`, 20, 40 + i * 10);
+      });
+
+      doc.save("daftar_harga_sayuran.pdf");
+    }
+
+    document.querySelector(".btn-secondary").addEventListener("click", unduhDaftarHarga);
+  </script>
+</body>
+</html>

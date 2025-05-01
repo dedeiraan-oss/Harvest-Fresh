@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harvest Fresh</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Swiper CSS -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+  <header class="navbar">
+    <h1>Harvest Fresh</h1>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="produk.html">Produk</a>
+      <a href="aboute.html">Tentang</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"  style="animation-delay: 0.3s;" data-title="Sayuran Segar" data-desc="Kami menyediakan sayuran langsung dari petani.">
+            <img src="/img/header.jpg"alt="Slide 1"/>
+          </div>
+          <div class="swiper-slide"  style="animation-delay: 0.3s;" data-title="Pengiriman Cepat" data-desc="Kami antar dalam waktu singkat ke lokasi Anda.">
+            <img src="/img/hero1.jpg" alt="Slide 2" />
+          </div>
+          <div class="swiper-slide"  style="animation-delay: 0.3s;" data-title="Harga Terbaik" data-desc="Dapatkan sayuran berkualitas dengan harga terjangkau.">
+            <img src="/img/hero2.jpg" alt="Slide 3"  />
+          </div>
+          <div class="swiper-slide" style="animation-delay: 0.3s;" data-title="Lokasi" data-desc="Berpusat dikawasan perkebunan" >
+            <img src="/img/hero3.jpg" alt="Slide 4"  />
+          </div>
+          <div class="swiper-slide"  style="animation-delay: 0.3s;"  data-title="Harvest Fresh" data-desc="Pertanian dan Supplier sayuran">
+            <img src="/img/hero4.jpg" alt="Slide 5" />
+          </div>
+        </div>
+        <!-- Navigasi panah -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    
+      <div class="hero-text">
+          <h2 id="heroTitle" class="fade-in-up">Supplier Sayuran Segar</h2>
+          <p id="heroDesc" class="fade-in-up" style="animation-delay: 0.3s;">
+            Kami menyediakan berbagai jenis sayuran untuk kebutuhan Anda.
+          </p>
+        <div class="button-group fade-in-up" style="animation-delay: 0.6s;">
+          <button class="btn-primary" onclick="window.location.href='produk.html';">LIHAT PRODUK</button>
+          <button class="btn-secondary" onclick="window.open('https://docs.google.com/spreadsheets/d/1sEl34jlBJuP2IfMVWmJNSdrjQcG-rB5oSBIKFAn4kE4/edit?usp=sharing', '_blank');">LIHAT DAFTAR HARGA</button>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="footer">
+    <p>&copy; 2023 Harvest Fresh. All rights reserved.</p>
+    <p>Jl.Lemahneundet RT 05/03 Desa Sukagalih Kec.Megamendung Kab.Bogor</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <script>
+    const heroTitle = document.getElementById("heroTitle");
+    const heroDesc = document.getElementById("heroDesc");
+  
+    const swiper = new Swiper(".hero-swiper", {
+      loop: true,
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      speed: 3000,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+  slideChangeTransitionStart: function () {
+    const currentSlide = swiper.slides[swiper.activeIndex];
+    const title = currentSlide.getAttribute("data-title");
+    const desc = currentSlide.getAttribute("data-desc");
+
+    if (title && desc) {
+      heroTitle.textContent = title;
+      heroDesc.textContent = desc;
+    }
+  }
+}
+    });
+  </script>
+  
+  
+  <script>
+    function unduhDaftarHarga() {
+      const doc = new jsPDF();
+      doc.setFontSize(16);
+      doc.text("Daftar Harga Sayuran", 20, 20);
+
+      const harga = [
+        ["Bayam", "Rp 15.000 / kg"],
+        ["Tomat", "Rp 26.000 / kg"],
+        ["Wortel", "Rp 12.000 / kg"],
+        ["Kubis", "Rp 9.000 / kg"],
+      ];
+
+      harga.forEach((item, i) => {
+        doc.text(`${item[0]}: ${item[1]}`, 20, 40 + i * 10);
+      });
+
+      doc.save("daftar_harga_sayuran.pdf");
+    }
+
+    document.querySelector(".btn-secondary").addEventListener("click", unduhDaftarHarga);
+  </script>
+</body>
+</html>
